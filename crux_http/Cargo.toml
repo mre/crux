@@ -10,6 +10,11 @@ license.workspace = true
 keywords.workspace = true
 rust-version.workspace = true
 
+[features]
+default = ["encoding"]
+# requires web-sys for TextDecoder on wasm
+encoding = ["encoding_rs", "web-sys"]
+
 [dependencies]
 anyhow.workspace = true
 async-trait = "0.1.80"
@@ -22,6 +27,8 @@ serde = { workspace = true, features = ["derive"] }
 serde_json = "1.0.117"
 thiserror = "1.0.60"
 url = "2.5.0"
+encoding_rs = { version = "0.8.20", optional = true }
+web-sys = { optional = true, version = "0.3.25", features = ["TextDecoder"] }
 
 [dev-dependencies]
 assert_fs = "1.0.13"
